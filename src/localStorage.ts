@@ -9,6 +9,8 @@ import debug from 'debug';
 import {
   AsyncLocalStorage,
 } from 'async_hooks';
+import Data from './data';
+import { randomSleep } from './sleep';
 
 /**
  * To activate this log, set the invironment variable DEBUG to value: node:async_hooks
@@ -17,19 +19,6 @@ import {
  *
  */
 const logger = debug('node:async_hooks');
-
-export interface Data {
-  values: number[];
-}
-
-function sleep(time = 100) {
-  return new Promise((resolve) => setTimeout(resolve, time));
-}
-
-async function randomSleep() {
-  const interval = Math.round(Math.random() * 100);
-  await sleep(interval);
-}
 
 async function add(storage: AsyncLocalStorage<Data>) {
   const context = storage.getStore();

@@ -10,6 +10,7 @@ import {
 } from 'async_hooks';
 
 import localStorage from './src/localStorage';
+import startKareem from './src/kareem';
 
 /**
  * To activate this log, set the invironment variable DEBUG to value: node:async_hooks
@@ -84,4 +85,6 @@ async function start(value: number) {
   console.log('Running localStorage...'); // eslint-disable-line
   await localStorage();
   console.log('Done.'); // eslint-disable-line
+
+  await startKareem();
 })();
